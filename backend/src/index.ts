@@ -2,6 +2,10 @@ import express, { Application, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db";
+import authRoutes from "./routes/authRoutes";
+import purchaseRoutes from "./routes/purchaseRoutes";
+import dashboardRoutes from "./routes/dashboardRoutes";
+
 
 dotenv.config();
 
@@ -11,6 +15,9 @@ connectDB();
 const app: Application = express();
 app.use(cors());
 app.use(express.json());
+app.use("/api/auth", authRoutes);
+app.use("/purchase", purchaseRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 const PORT = process.env.PORT || 5000;
 
